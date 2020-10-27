@@ -1,14 +1,15 @@
 <template>
-  <div>
+  <div style="text-align: center;">
+    <van-image width="100" height="100" src="https://img.yzcdn.cn/vant/cat.jpeg" />
     <div class="title">贵州医科大学附属医院</div>
     <div class="sub-title mb20">贵医大进修</div>
     <van-form @submit="onSubmit">
       <van-field
         v-model="username"
-        name="idcard"
-        label="工号"
-        placeholder="请输入工号"
-        :rules="[{ required: true, message: '必须填写工号' }]"
+        name="idCard"
+        label="账号"
+        placeholder="请输入账号"
+        :rules="[{ required: true, message: '必须填写账号' }]"
       />
       <van-field
         v-model="password"

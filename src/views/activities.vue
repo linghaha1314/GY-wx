@@ -40,6 +40,9 @@
           <div>{{data.Address}}</div>
         </div>
       </div>
+      <div style="position: fixed;right: 26px;bottom: 60px">
+        <van-icon color="#17d4b5" name="add" size="40"/>
+      </div>
     </div>
   </div>
 </template>

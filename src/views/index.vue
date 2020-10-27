@@ -53,6 +53,39 @@
         </template>
 
       </van-card>
+      <van-card
+          title="商品标题商品标题商品标题商品标题商品标题商品标题商品标题商品标题商品标题商品标题"
+          thumb="https://img.yzcdn.cn/vant/ipad.jpeg"
+      >
+        <template #num>
+          <div style="flex: 1;">
+            <span style="margin-right: 12px">20000人阅读</span> <span>2020-10-19</span>
+          </div>
+        </template>
+
+      </van-card>
+      <van-card
+          title="商品标题商品标题商品标题商品标题商品标题商品标题商品标题商品标题商品标题商品标题"
+          thumb="https://img.yzcdn.cn/vant/ipad.jpeg"
+      >
+        <template #num>
+          <div style="flex: 1;">
+            <span style="margin-right: 12px">20000人阅读</span> <span>2020-10-19</span>
+          </div>
+        </template>
+
+      </van-card>
+      <van-card
+          title="商品标题商品标题商品标题商品标题商品标题商品标题商品标题商品标题商品标题商品标题"
+          thumb="https://img.yzcdn.cn/vant/ipad.jpeg"
+      >
+        <template #num>
+          <div style="flex: 1;">
+            <span style="margin-right: 12px">20000人阅读</span> <span>2020-10-19</span>
+          </div>
+        </template>
+
+      </van-card>
     </div>
   </div>
 </template>

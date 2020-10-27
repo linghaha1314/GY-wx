@@ -14,9 +14,16 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;
+  padding-top: 46px;
 }
   .cc{
     display: flex;
     align-items: center;
+  }
+  .van-nav-bar{
+    width: 100vw;
+    position: fixed;
+    left: 0;
+    top: 0;
   }
 </style>
