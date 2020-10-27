@@ -67,6 +67,11 @@
                         title: '在线考试',
                         url:'/test',
                         icon: 'records'
+                    },
+                    {
+                        title: '教学活动',
+                        url:'/activities',
+                        icon: 'gift-o'
                     }
                 ]
             }

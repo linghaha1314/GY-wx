@@ -2,7 +2,7 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
 import {
-    Button,Icon, Form, Field, Tabbar, TabbarItem, Toast, NavBar, Swipe, SwipeItem, NoticeBar, Grid, GridItem, Card, Search, Tab, Tabs, Image as VanImage, Tag, Cell, CellGroup, Divider
+    Button,Icon, Form, Field, Tabbar, TabbarItem, Toast, NavBar, Swipe, SwipeItem, NoticeBar, Grid, GridItem, Card, Search, Tab, Tabs, Image as VanImage, Tag, Cell, CellGroup, Divider, Collapse, CollapseItem, CountDown, RadioGroup, Radio, Popup, Checkbox, CheckboxGroup, DropdownMenu, DropdownItem
 } from 'vant';
 import 'lib-flexible/flexible.js'
 
@@ -26,10 +26,20 @@ Vue.use(Search)
 Vue.use(Tab)
 Vue.use(Tabs)
 Vue.use(VanImage)
-Vue.use(Tag)
 Vue.use(Cell)
 Vue.use(CellGroup)
 Vue.use(Divider)
+Vue.use(Collapse)
+Vue.use(CollapseItem)
+Vue.use(CountDown)
+Vue.use(RadioGroup)
+Vue.use(Radio)
+Vue.use(Popup)
+Vue.use(Checkbox)
+Vue.use(CheckboxGroup)
+Vue.use(DropdownMenu)
+Vue.use(DropdownItem)
+Vue.use(Tag)
 
 new Vue({
     router,

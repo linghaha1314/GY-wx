@@ -2,7 +2,7 @@
   <div>
     <van-nav-bar :title="name" left-arrow>
       <template #left>
-        <span style="color: #17d4b5" @click="$router.back(-1)">返回</span>
+        <span style="color: #17d4b5" @click="$router.go(-1)">返回</span>
       </template>
     </van-nav-bar>
     <div style="display: flex;justify-content: space-between;align-items: center; padding: 0 12px;">
@@ -22,6 +22,7 @@
     <div style="background: #f6f6f6; padding: 12px;">
       <div style="background: #ffffff; padding: 10px 20px; border-radius: 4px; position: relative;margin-bottom: 12px"
            v-for="data in testData" :key="data.title"
+           @click="goTestDetail(data)"
       >
         <div style="font-size: 14px;">
           {{data.title}}
@@ -69,6 +70,16 @@
       computed:{
           name(){
               return this.$route.name
+          }
+      },
+      methods:{
+          goTestDetail(data){
+              this.$router.push({
+                  path: '/test-detail',
+                  params: {
+                      ...data
+                  }
+              })
           }
       }
   }

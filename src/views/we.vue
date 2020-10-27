@@ -19,29 +19,29 @@
         </div>
 
         <!--间隔-->
-        <div style="width:100%; height: 7px; background: #f6f6f6"></div>
+<!--        <div style="width:100%; height: 7px; background: #f6f6f6"></div>-->
 
-        <div>
-            <div style="display: flex; justify-content: space-between;align-items: center; padding: 12px 20px">
-                <h3>
-                   工具箱
-                </h3>
-                <div style="color: #ccc; font-size: 10px">
-                    查看全部工具
-                    <van-icon name="arrow" />
-                </div>
-            </div>
-            <van-grid :border="false">
-                <van-grid-item v-for="value in 8" :key="value" icon="photo-o" text="文字"/>
-            </van-grid>
-        </div>
+<!--        <div>-->
+<!--            <div style="display: flex; justify-content: space-between;align-items: center; padding: 12px 20px">-->
+<!--                <h3>-->
+<!--                   工具箱-->
+<!--                </h3>-->
+<!--                <div style="color: #ccc; font-size: 10px">-->
+<!--                    查看全部工具-->
+<!--                    <van-icon name="arrow" />-->
+<!--                </div>-->
+<!--            </div>-->
+<!--            <van-grid :border="false">-->
+<!--                <van-grid-item v-for="value in 8" :key="value" icon="photo-o" text="文字"/>-->
+<!--            </van-grid>-->
+<!--        </div>-->
 
         <!--间隔-->
-        <div style="width:100%; height: 7px; background: #f6f6f6"></div>
+<!--        <div style="width:100%; height: 7px; background: #f6f6f6"></div>-->
 
         <div>
             <van-cell title="修改密码" icon="edit" is-link />
-            <van-cell title="切换身份" icon="friends-o" is-link />
+<!--            <van-cell title="切换身份" icon="friends-o" is-link />-->
             <van-cell title="关于我们" icon="warning-o" is-link />
         </div>
     </div>

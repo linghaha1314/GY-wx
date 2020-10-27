@@ -53,6 +53,26 @@ const router = new Router({
       component: () => import('./views/my-test.vue')
     },
     {
+      path: '/test-detail',
+      name: '考试详情',
+      component: () => import('./views/test-detail.vue')
+    },
+    {
+      path: '/test-submit',
+      name: '考试提交',
+      component: () => import('./views/test-submit.vue')
+    },
+    {
+      path: '/activities',
+      name: '教学活动',
+      component: () => import('./views/activities.vue')
+    },
+    {
+      path: '/paper',
+      name: '倒计时',
+      component: () => import('./views/paper.vue')
+    },
+    {
       path: '/about',
       name: 'about',
       component: () => import('./views/About.vue')
