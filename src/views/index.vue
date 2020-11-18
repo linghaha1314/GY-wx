@@ -2,10 +2,12 @@
   <div>
     <div style="padding: 12px; border-bottom: 1px solid #efefef">
       <van-swipe class="my-swipe" :autoplay="3000" indicator-color="white">
-        <van-swipe-item>1</van-swipe-item>
-        <van-swipe-item>2</van-swipe-item>
-        <van-swipe-item>3</van-swipe-item>
-        <van-swipe-item>4</van-swipe-item>
+        <van-swipe-item>
+          <van-image :src="require('../assets/img/banner-1.png')" />
+        </van-swipe-item>
+        <van-swipe-item>
+          <van-image :src="require('../assets/img/banner-2.png')" />
+        </van-swipe-item>
       </van-swipe>
     </div>
     <div style="display: flex;">
@@ -105,6 +107,31 @@
                         title: '教学活动',
                         url:'/activities',
                         icon: 'gift-o'
+                    },
+                    {
+                        title: '活动签到',
+                        url:'/activities-sign',
+                        icon: 'location-o'
+                    },
+                    {
+                        title: '请假',
+                        url:'/leave',
+                        icon: 'todo-list-o'
+                    },
+                    {
+                        title: '活动记录',
+                        url:'/activities-record',
+                        icon: 'send-gift-o'
+                    },
+                    {
+                        title: '销假',
+                        url:'/leave-bin',
+                        icon: 'certificate'
+                    },
+                    {
+                        title: '工作量',
+                        url:'/workload',
+                        icon: 'chart-trending-o'
                     }
                 ]
             }
@@ -121,8 +148,6 @@
   .my-swipe .van-swipe-item {
     color: #fff;
     font-size: 20px;
-    line-height: 150px;
     text-align: center;
-    background-color: #39a9ed;
   }
 </style>

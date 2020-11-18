@@ -7,17 +7,18 @@
     </van-nav-bar>
     <div>
       <van-dropdown-menu active-color="#17d4b5">
-        <van-dropdown-item title="类型" v-model="value1" :options="option1" />
+        <van-dropdown-item title="年度" v-model="value1" :options="option1" />
+        <van-dropdown-item title="科室" v-model="value2" :options="option2" />
         <van-dropdown-item title="状态" v-model="value2" :options="option2" />
       </van-dropdown-menu>
     </div>
-    <div>
-      <van-search
-          v-model="value"
-          shape="round"
-          placeholder="搜索活动名字"
-      />
-    </div>
+<!--    <div>-->
+<!--      <van-search-->
+<!--          v-model="value"-->
+<!--          shape="round"-->
+<!--          placeholder="搜索活动名字"-->
+<!--      />-->
+<!--    </div>-->
     <div style="background: #f6f6f6; padding: 12px;">
       <div style="background: #ffffff; padding: 10px 20px; border-radius: 4px; position: relative;margin-bottom: 12px"
            v-for="data in testData" :key="data.title"
@@ -29,20 +30,15 @@
         </div>
         <van-divider />
         <div style="margin-bottom: 10px">
-          <div style="color: #cccccc;margin-bottom: 4px;">活动时间:</div>
-          <div>2020年10月10日 {{data.startTime}}</div>
+          <div>时间:2020年10月10日 {{data.startTime}}</div>
         </div>
         <div style="margin-bottom: 10px">
-          <div style="color: #cccccc;margin-bottom: 4px;">讲师:</div>
-          <div>{{data.peopleValue}}</div>
+          <div>科室:{{data.address}}</div>
         </div>
-        <div style="margin-bottom: 10px">
-          <div style="color: #cccccc;margin-bottom: 4px;">活动地址:</div>
-          <div>{{data.address}}</div>
-        </div>
+
       </div>
       <div style="position: fixed;right: 26px;bottom: 60px">
-        <router-link to="/activities-add">
+        <router-link to="/leave-add">
           <van-icon color="#17d4b5" name="add" size="40"/>
         </router-link>
       </div>
@@ -69,13 +65,13 @@
                     { text: '主任查房', value: 'director_round' },
                 ],
                 option2: [
-                    { text: '未发布', value: 'c' },
-                    { text: '开展中', value: 'a' },
-                    { text: '已完成', value: 'b' },
+                    { text: '待审核', value: 'c' },
+                    { text: '已通过', value: 'a' },
+                    { text: '已拒绝', value: 'b' },
                 ],
                 testData: [
                     {
-                        title: '2020楚科活动11',
+                        title: '家里有事',
                         startTime: '09:00 - 11:00',
                         content: '2020-2021 口腔专业理论活动11',
                         isPass: true,
@@ -85,7 +81,7 @@
                         status: 1,
                     },
                     {
-                        title: '2020楚科活动1001',
+                        title: '产假',
                         startTime: '10:00 - 21:00',
                         content: '2020-2021 口腔专业理论活动1001',
                         isPass: false,
@@ -115,7 +111,7 @@
             goDetail(data){
                 localStorage.setItem('currentData',JSON.stringify(data))
                 this.$router.push({
-                    path: '/activities-add'
+                    path: '/leave-add'
                 })
             }
         }

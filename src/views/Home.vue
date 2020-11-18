@@ -1,9 +1,9 @@
 <template>
   <div class="home">
-    <van-nav-bar :title="name" left-arrow>
-      <template #left>
-        <van-icon name="scan" size="18" color="#17d4b5" />
-      </template>
+    <van-nav-bar :title="name">
+<!--      <template #left>-->
+<!--        <van-icon name="scan" size="18" color="#17d4b5" @click="goScan"/>-->
+<!--      </template>-->
     </van-nav-bar>
     <router-view style="overflow: auto; padding-bottom: 60px"></router-view>
     <div>
@@ -29,6 +29,13 @@ export default {
   computed:{
       name(){
           return this.$route.name
+      }
+  },
+  methods:{
+      goScan(){
+          this.$router.push({
+              path: '/scan'
+          })
       }
   }
 };

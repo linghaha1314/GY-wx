@@ -7,20 +7,32 @@
     </van-nav-bar>
     <van-form @submit="onSubmit">
       <van-field
-          v-model="formData.title"
-          name="title"
-          label="活动标题"
-          placeholder="请填写活动标题"
-          :rules="[{ required: true, message: '请填写活动标题' }]"
+          v-model="formData.number"
+          name="number"
+          label="住院号"
+          placeholder="请填写住院号"
+          :rules="[{ required: true, message: '请填写住院号' }]"
       />
+      <van-field
+          v-model="formData.name"
+          name="name"
+          label="病人姓名"
+          placeholder="请填写病人姓名"
+          :rules="[{ required: true, message: '请填写病人姓名' }]"
+      />
+
+      <van-field
+          v-model="formData.bedId"
+          type="number"
+          label="床位号" />
 
       <van-field
           name="people"
           readonly
           clickable
-          label="主讲人"
+          label="诊断"
           :value="formData.peopleValue"
-          placeholder="选择主讲人"
+          placeholder="选择诊断"
           @click="showPicker = true"
       />
       <van-popup v-model="showPicker" round position="bottom">
@@ -31,29 +43,20 @@
             @confirm="onConfirm"
         />
       </van-popup>
-
-      <van-field
-          v-model="formData.address"
-          name="address"
-          label="活动地址"
-          placeholder="填写活动地址"
-          :rules="[{ required: true, message: '请填写活动地址' }]"
-      />
-
       <van-field
           readonly
           clickable
           name="date"
-          label="活动日期"
+          label="入院日期"
           :value="formData.dateValue"
-          placeholder="选择活动日期"
+          placeholder="选择入院日期"
           @click="showDatePicker = true"
       />
       <van-popup v-model="showDatePicker" round position="bottom">
         <van-datetime-picker
             v-model="formData.currentDate"
             type="date"
-            title="选择年月日"
+            title="入院日期"
             @cancel="showDatePicker = false"
             @confirm="onDateConfirm"
             :min-date="minDate"
@@ -62,54 +65,12 @@
       </van-popup>
       <div style="width:100%; height: 7px; background: #f6f6f6"></div>
       <van-field
-          name="startTime"
-          readonly
-          clickable
-          label="开始时间"
-          :value="formData.startValue"
-          placeholder="选择开始时间"
-          @click="showStartTimePicker = true"
-      />
-      <van-popup v-model="showStartTimePicker" round position="bottom">
-        <van-datetime-picker
-            v-model="formData.currentTime"
-            type="time"
-            title="选择时间"
-            @cancel="showStartTimePicker = false"
-            @confirm="onStartDateConfirm"
-            :min-hour="10"
-            :max-hour="20"
-        />
-      </van-popup>
-      <van-field
-          name="endTime"
-          readonly
-          clickable
-          label="结束时间"
-          :value="formData.endValue"
-          placeholder="选择结束时间"
-          @click="showEndTimePicker = true"
-      />
-      <van-popup v-model="showEndTimePicker" round position="bottom">
-        <van-datetime-picker
-            v-model="formData.currentEndDate"
-            type="time"
-            title="选择时间"
-            @cancel="showEndTimePicker = false"
-            @confirm="onEndDateConfirm"
-            :min-hour="10"
-            :max-hour="20"
-        />
-      </van-popup>
-      <div style="width:100%; height: 7px; background: #f6f6f6"></div>
-
-      <van-field
           readonly
           clickable
           name="type"
-          label="活动类型"
+          label="科室"
           :value="formData.typeValue"
-          placeholder="选择活动类型"
+          placeholder="选择科室"
           @click="showTypePicker = true"
       />
       <van-popup v-model="showTypePicker" round position="bottom">
@@ -120,26 +81,43 @@
             @confirm="onTypeConfirm"
         />
       </van-popup>
-<!--      <van-field-->
-<!--          v-model="formData.content"-->
-<!--          name="content"-->
-<!--          label="活动内容"-->
-<!--          placeholder="请填写活动内容"-->
-<!--          :rules="[{ required: true, message: '请填写活动内容' }]"-->
-<!--      />-->
-      <div style="width:100%; height: 7px; background: #f6f6f6"></div>
       <van-field
-          v-model="formData.remake"
-          name="remake"
-          label="备注信息"
-          placeholder="请填写备注信息"
+          readonly
+          clickable
+          name="type"
+          label="病种"
+          :value="formData.typeValue"
+          placeholder="选择病种"
+          @click="showTypePicker = true"
       />
+      <van-popup v-model="showTypePicker" round position="bottom">
+        <van-picker
+            :columns="typeColumns"
+            :show-toolbar="true"
+            @cancel="showTypePicker = false"
+            @confirm="onTypeConfirm"
+        />
+      </van-popup>
+      <van-field
+          readonly
+          clickable
+          name="type"
+          label="工作内容"
+          :value="formData.typeValue"
+          placeholder="选择工作内容"
+          @click="showTypePicker = true"
+      />
+      <van-popup v-model="showTypePicker" round position="bottom">
+        <van-picker
+            :columns="typeColumns"
+            :show-toolbar="true"
+            @cancel="showTypePicker = false"
+            @confirm="onTypeConfirm"
+        />
+      </van-popup>
       <div style="width:100%; height: 7px; background: #f6f6f6"></div>
-      <van-field name="uploader" label="附件上传">
-        <template #input>
-          <van-uploader v-model="formData.uploader" />
-        </template>
-      </van-field>
+
+
       <div style="margin: 16px;"  v-if="action===3">
         <van-button round block color="#17d4b5" native-type="submit">
           提交
@@ -167,8 +145,10 @@
         data(){
             return{
                 formData:{
-                    title: '',
+                    number: '',
+                    name: '',
                     address: '',
+                    bedId: 1,
                     peopleValue: '',
                     dateValue: '',
                     startValue: '',

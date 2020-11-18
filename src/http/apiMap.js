@@ -4,3 +4,8 @@ import axios from './axios'
 export function getCityList () {
     return axios.post('/dspManager/index/cityList')
 }
+
+// 登录
+export function getLogin (params) {
+    return axios.post('/formLogin', params)
+}

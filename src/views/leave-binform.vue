@@ -6,49 +6,35 @@
       </template>
     </van-nav-bar>
     <van-form @submit="onSubmit">
-      <van-field
-          v-model="formData.title"
-          name="title"
-          label="活动标题"
-          placeholder="请填写活动标题"
-          :rules="[{ required: true, message: '请填写活动标题' }]"
-      />
-
-      <van-field
-          name="people"
-          readonly
-          clickable
-          label="主讲人"
-          :value="formData.peopleValue"
-          placeholder="选择主讲人"
-          @click="showPicker = true"
-      />
-      <van-popup v-model="showPicker" round position="bottom">
-        <van-picker
-            :columns="columns"
-            :show-toolbar="true"
-            @cancel="showPicker = false"
-            @confirm="onConfirm"
-        />
-      </van-popup>
-
-      <van-field
-          v-model="formData.address"
-          name="address"
-          label="活动地址"
-          placeholder="填写活动地址"
-          :rules="[{ required: true, message: '请填写活动地址' }]"
-      />
-
+      <div style="width:100%; height: 7px; background: #f6f6f6"></div>
       <van-field
           readonly
           clickable
           name="date"
-          label="活动日期"
+          label="实际请假开始时间"
           :value="formData.dateValue"
-          placeholder="选择活动日期"
+          placeholder="选择开始时间"
           @click="showDatePicker = true"
       />
+      <van-field
+          readonly
+          clickable
+          name="dateEnd"
+          label="实际请假结束时间"
+          :value="formData.dateEnd"
+          placeholder="选择开始时间"
+          @click="showDatePicker = true"
+      />
+
+      <van-field name="isLeave" label="是否已休假">
+        <template #input>
+          <van-radio-group v-model="formData.isLeave" direction="horizontal">
+            <van-radio name="1">是</van-radio>
+            <van-radio name="0">否</van-radio>
+          </van-radio-group>
+        </template>
+      </van-field>
+
       <van-popup v-model="showDatePicker" round position="bottom">
         <van-datetime-picker
             v-model="formData.currentDate"
@@ -61,101 +47,56 @@
         />
       </van-popup>
       <div style="width:100%; height: 7px; background: #f6f6f6"></div>
-      <van-field
-          name="startTime"
-          readonly
-          clickable
-          label="开始时间"
-          :value="formData.startValue"
-          placeholder="选择开始时间"
-          @click="showStartTimePicker = true"
-      />
-      <van-popup v-model="showStartTimePicker" round position="bottom">
-        <van-datetime-picker
-            v-model="formData.currentTime"
-            type="time"
-            title="选择时间"
-            @cancel="showStartTimePicker = false"
-            @confirm="onStartDateConfirm"
-            :min-hour="10"
-            :max-hour="20"
-        />
-      </van-popup>
-      <van-field
-          name="endTime"
-          readonly
-          clickable
-          label="结束时间"
-          :value="formData.endValue"
-          placeholder="选择结束时间"
-          @click="showEndTimePicker = true"
-      />
-      <van-popup v-model="showEndTimePicker" round position="bottom">
-        <van-datetime-picker
-            v-model="formData.currentEndDate"
-            type="time"
-            title="选择时间"
-            @cancel="showEndTimePicker = false"
-            @confirm="onEndDateConfirm"
-            :min-hour="10"
-            :max-hour="20"
-        />
-      </van-popup>
-      <div style="width:100%; height: 7px; background: #f6f6f6"></div>
 
-      <van-field
-          readonly
-          clickable
-          name="type"
-          label="活动类型"
-          :value="formData.typeValue"
-          placeholder="选择活动类型"
-          @click="showTypePicker = true"
-      />
-      <van-popup v-model="showTypePicker" round position="bottom">
-        <van-picker
-            :columns="typeColumns"
-            :show-toolbar="true"
-            @cancel="showTypePicker = false"
-            @confirm="onTypeConfirm"
-        />
-      </van-popup>
-<!--      <van-field-->
-<!--          v-model="formData.content"-->
-<!--          name="content"-->
-<!--          label="活动内容"-->
-<!--          placeholder="请填写活动内容"-->
-<!--          :rules="[{ required: true, message: '请填写活动内容' }]"-->
-<!--      />-->
-      <div style="width:100%; height: 7px; background: #f6f6f6"></div>
-      <van-field
-          v-model="formData.remake"
-          name="remake"
-          label="备注信息"
-          placeholder="请填写备注信息"
-      />
-      <div style="width:100%; height: 7px; background: #f6f6f6"></div>
-      <van-field name="uploader" label="附件上传">
-        <template #input>
-          <van-uploader v-model="formData.uploader" />
-        </template>
-      </van-field>
-      <div style="margin: 16px;"  v-if="action===3">
+      <van-cell-group>
+        <van-cell title="请假类型" value="事件" />
+        <van-cell title="请假天数" value="3天" />
+        <van-cell title="申请详情" value="内容" />
+        <div style="display: flex;justify-content: space-between;width: 100%;padding: 0 12px 10px;box-sizing: border-box;font-size: 12px">
+          <div style="color: #B0B0B0">
+            申请时间:
+          </div>
+          <div style="color: #3E3E3E">
+            2020-10-08 15:34:41
+          </div>
+        </div>
+        <div style="display: flex;justify-content: space-between;width: 100%;padding: 0 12px 10px;box-sizing: border-box;font-size: 12px">
+          <div style="color: #B0B0B0">
+            带教老师:
+          </div>
+          <div style="color: #3E3E3E">
+            李老师
+          </div>
+        </div>
+        <div style="display: flex;justify-content: space-between;width: 100%;padding: 0 12px 10px;box-sizing: border-box;font-size: 12px">
+          <div style="color: #B0B0B0">
+            请假事由:
+          </div>
+          <div style="color: #3E3E3E">
+            事假
+          </div>
+        </div>
+        <div style="display: flex;justify-content: space-between;width: 100%;padding: 0 12px 10px;box-sizing: border-box;font-size: 12px">
+          <div style="color: #B0B0B0">
+            开始时间:
+          </div>
+          <div style="color: #3E3E3E">
+            2020-10-08 15:34:41
+          </div>
+        </div>
+        <div style="display: flex;justify-content: space-between;width: 100%;padding: 0 12px 10px;box-sizing: border-box;font-size: 12px">
+          <div style="color: #B0B0B0">
+            结束时间:
+          </div>
+          <div style="color: #3E3E3E">
+            2020-10-08 15:34:41
+          </div>
+        </div>
+      </van-cell-group>
+
+      <div style="margin: 16px;">
         <van-button round block color="#17d4b5" native-type="submit">
-          提交
-        </van-button>
-      </div>
-      <div style="margin: 16px;" v-if="action===1">
-        <van-button style="margin-bottom: 12px;" round block color="#17d4b5" native-type="submit">
-          发布
-        </van-button>
-        <van-button round block type="danger">
-          删除
-        </van-button>
-      </div>
-      <div style="margin: 16px;" v-if="action===2">
-        <van-button round block color="#17d4b5" native-type="submit">
-          结束活动
+          提交申请
         </van-button>
       </div>
     </van-form>
@@ -167,7 +108,6 @@
         data(){
             return{
                 formData:{
-                    title: '',
                     address: '',
                     peopleValue: '',
                     dateValue: '',
@@ -176,7 +116,10 @@
                     typeValue: '',
                     content: '',
                     remake: '',
-                    uploader: []
+                    uploader: [],
+                    number: 1,
+                    dateEnd: '',
+                    isLeave: '1'
                 },
 
                 showPicker: false,

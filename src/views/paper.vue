@@ -98,6 +98,7 @@ min-height: 100px;padding-top: 12px">
   </div>
 </template>
 <script>
+    import { Dialog } from 'vant';
     export default {
         name: 'test',
         data() {
@@ -204,8 +205,16 @@ min-height: 100px;padding-top: 12px">
             },
             // 提交试卷
             submitPaper(){
-                this.$router.replace({
-                    path: '/test-submit'
+                Dialog.confirm({
+                    title: '温馨提示:',
+                    message: '确认提交试卷么??',
+                    confirmButtonColor: '#17d4b5'
+                }).then(()=>{
+                    this.$router.replace({
+                        path: '/test-submit'
+                    })
+                }).catch(()=>{
+                    return false
                 })
             },
             // 做题时切换状态

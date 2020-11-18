@@ -6,21 +6,33 @@
       </template>
     </van-nav-bar>
     <van-form @submit="onSubmit">
+
       <van-field
-          v-model="formData.title"
-          name="title"
-          label="活动标题"
-          placeholder="请填写活动标题"
-          :rules="[{ required: true, message: '请填写活动标题' }]"
+          readonly
+          clickable
+          required
+          name="type"
+          label="请假类型"
+          :value="formData.typeValue"
+          placeholder="选择请假类型"
+          @click="showTypePicker = true"
       />
+      <van-popup v-model="showTypePicker" round position="bottom">
+        <van-picker
+            :columns="typeColumns"
+            :show-toolbar="true"
+            @cancel="showTypePicker = false"
+            @confirm="onTypeConfirm"
+        />
+      </van-popup>
 
       <van-field
           name="people"
           readonly
           clickable
-          label="主讲人"
+          label="带教老师"
           :value="formData.peopleValue"
-          placeholder="选择主讲人"
+          placeholder="选择带教老师"
           @click="showPicker = true"
       />
       <van-popup v-model="showPicker" round position="bottom">
@@ -35,18 +47,20 @@
       <van-field
           v-model="formData.address"
           name="address"
-          label="活动地址"
-          placeholder="填写活动地址"
-          :rules="[{ required: true, message: '请填写活动地址' }]"
+          label="去向"
+          placeholder="填写去向"
+          :rules="[{ required: true, message: '请填写去向' }]"
       />
 
+
+      <div style="width:100%; height: 7px; background: #f6f6f6"></div>
       <van-field
           readonly
           clickable
           name="date"
-          label="活动日期"
+          label="开始时间"
           :value="formData.dateValue"
-          placeholder="选择活动日期"
+          placeholder="选择开始时间"
           @click="showDatePicker = true"
       />
       <van-popup v-model="showDatePicker" round position="bottom">
@@ -60,66 +74,20 @@
             :max-date="maxDate"
         />
       </van-popup>
-      <div style="width:100%; height: 7px; background: #f6f6f6"></div>
-      <van-field
-          name="startTime"
-          readonly
-          clickable
-          label="开始时间"
-          :value="formData.startValue"
-          placeholder="选择开始时间"
-          @click="showStartTimePicker = true"
-      />
-      <van-popup v-model="showStartTimePicker" round position="bottom">
-        <van-datetime-picker
-            v-model="formData.currentTime"
-            type="time"
-            title="选择时间"
-            @cancel="showStartTimePicker = false"
-            @confirm="onStartDateConfirm"
-            :min-hour="10"
-            :max-hour="20"
-        />
-      </van-popup>
-      <van-field
-          name="endTime"
-          readonly
-          clickable
-          label="结束时间"
-          :value="formData.endValue"
-          placeholder="选择结束时间"
-          @click="showEndTimePicker = true"
-      />
-      <van-popup v-model="showEndTimePicker" round position="bottom">
-        <van-datetime-picker
-            v-model="formData.currentEndDate"
-            type="time"
-            title="选择时间"
-            @cancel="showEndTimePicker = false"
-            @confirm="onEndDateConfirm"
-            :min-hour="10"
-            :max-hour="20"
-        />
-      </van-popup>
-      <div style="width:100%; height: 7px; background: #f6f6f6"></div>
 
       <van-field
-          readonly
-          clickable
-          name="type"
-          label="活动类型"
-          :value="formData.typeValue"
-          placeholder="选择活动类型"
-          @click="showTypePicker = true"
+          v-model="formData.number"
+          type="number"
+          label="请假时长" />
+      <van-field
+          v-model="formData.endValue"
+          name="endValue"
+          label="结束时间"
+          disabled
       />
-      <van-popup v-model="showTypePicker" round position="bottom">
-        <van-picker
-            :columns="typeColumns"
-            :show-toolbar="true"
-            @cancel="showTypePicker = false"
-            @confirm="onTypeConfirm"
-        />
-      </van-popup>
+      <div style="width:100%; height: 7px; background: #f6f6f6"></div>
+
+
 <!--      <van-field-->
 <!--          v-model="formData.content"-->
 <!--          name="content"-->
@@ -131,8 +99,8 @@
       <van-field
           v-model="formData.remake"
           name="remake"
-          label="备注信息"
-          placeholder="请填写备注信息"
+          label="理由"
+          placeholder="请填写理由"
       />
       <div style="width:100%; height: 7px; background: #f6f6f6"></div>
       <van-field name="uploader" label="附件上传">
@@ -142,7 +110,7 @@
       </van-field>
       <div style="margin: 16px;"  v-if="action===3">
         <van-button round block color="#17d4b5" native-type="submit">
-          提交
+          提交申请
         </van-button>
       </div>
       <div style="margin: 16px;" v-if="action===1">
@@ -167,7 +135,6 @@
         data(){
             return{
                 formData:{
-                    title: '',
                     address: '',
                     peopleValue: '',
                     dateValue: '',
@@ -176,7 +143,8 @@
                     typeValue: '',
                     content: '',
                     remake: '',
-                    uploader: []
+                    uploader: [],
+                    number: 1
                 },
 
                 showPicker: false,

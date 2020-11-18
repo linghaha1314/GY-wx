@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Home from './views/Home.vue'
 import { Toast } from 'vant';
+// import store from "./store/page";
 
 Vue.use(Toast)
 Vue.use(Router)
@@ -14,8 +15,8 @@ const router = new Router({
     },
     {
       path: '/home',
-      component: Home,
-      children:[
+        component: Home,
+        children:[
         {
           path: '',
           redirect: '/home/index'
@@ -63,9 +64,74 @@ const router = new Router({
       component: () => import('./views/test-submit.vue')
     },
     {
+      path: '/workload',
+      name: '工作量',
+      component: () => import('./views/workload.vue')
+    },
+    {
       path: '/activities',
       name: '教学活动',
       component: () => import('./views/activities.vue')
+    },
+    {
+      path: '/activities-add',
+      name: '添加活动',
+      component: () => import('./views/activities-add.vue')
+    },
+    {
+      path: '/workload-add',
+      name: '添加工作量',
+      component: () => import('./views/workload-add.vue')
+    },
+    {
+      path: '/workload-clinical',
+      name: '添加临床工作量',
+      component: () => import('./views/workload-clinical.vue')
+    },
+    {
+      path: '/workload-clinical-add',
+      name: '添加临床工作量详情',
+      component: () => import('./views/workload-clinical-add.vue')
+    },
+    {
+      path: '/activities-sign',
+      name: '活动签到',
+      component: () => import('./views/activities-sign.vue')
+    },
+    {
+      path: '/activities-record',
+      name: '活动记录',
+      component: () => import('./views/activities-record.vue')
+    },
+    {
+      path: '/activities-write',
+      name: '填写记录',
+      component: () => import('./views/activities-write.vue')
+    },
+    {
+      path: '/scan',
+      name: '扫描二维码',
+      component: () => import('./views/scan.vue')
+    },
+    {
+      path: '/leave',
+      name: '请假列表',
+      component: () => import('./views/leave.vue')
+    },
+    {
+      path: '/leave-bin',
+      name: '销假列表',
+      component: () => import('./views/leave-bin.vue')
+    },
+    {
+      path: '/leave-add',
+      name: '请假申请',
+      component: () => import('./views/leave-add.vue')
+    },
+    {
+      path: '/leave-binform',
+      name: '销假申请',
+      component: () => import('./views/leave-binform.vue')
     },
     {
       path: '/paper',

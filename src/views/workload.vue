@@ -7,45 +7,68 @@
     </van-nav-bar>
     <div>
       <van-dropdown-menu active-color="#17d4b5">
-        <van-dropdown-item title="类型" v-model="value1" :options="option1" />
+        <van-dropdown-item title="日期" v-model="value1" :options="option1" />
+        <van-dropdown-item title="带教老师  " v-model="value2" :options="option2" />
         <van-dropdown-item title="状态" v-model="value2" :options="option2" />
       </van-dropdown-menu>
     </div>
-    <div>
+    <div style="display: flex;justify-content: space-between;align-items: center; padding: 0 12px;">
       <van-search
           v-model="value"
           shape="round"
+          style="width: 80%"
           placeholder="搜索活动名字"
       />
+      <div style="display: flex; flex-direction: column;align-items: center; color: #17d4b5"
+        @click="isEdit=!isEdit"
+      >
+        <van-icon name="setting-o" size="22"/>
+        <span style="font-size: 10px">编辑</span>
+      </div>
     </div>
     <div style="background: #f6f6f6; padding: 12px;">
       <div style="background: #ffffff; padding: 10px 20px; border-radius: 4px; position: relative;margin-bottom: 12px"
            v-for="data in testData" :key="data.title"
-           @click="goDetail(data)"
       >
         <div style="font-size: 14px;display: flex;justify-content: space-between;">
-          {{data.title}}
+          <van-checkbox v-model="data.checked" shape="square" checked-color="#17d4b5">{{data.date}}</van-checkbox>
           <van-tag :type="['primary', 'success', 'warning'][data.status]" size="medium">{{option2[data.status].text}}</van-tag>
         </div>
         <van-divider />
-        <div style="margin-bottom: 10px">
-          <div style="color: #cccccc;margin-bottom: 4px;">活动时间:</div>
-          <div>2020年10月10日 {{data.startTime}}</div>
-        </div>
-        <div style="margin-bottom: 10px">
-          <div style="color: #cccccc;margin-bottom: 4px;">讲师:</div>
-          <div>{{data.peopleValue}}</div>
-        </div>
-        <div style="margin-bottom: 10px">
-          <div style="color: #cccccc;margin-bottom: 4px;">活动地址:</div>
-          <div>{{data.address}}</div>
+        <div @click="goDetail(data)" style="display: flex;flex-wrap: wrap;">
+          <div style="margin-bottom: 10px;width: 50%;">
+            <div style="color: #cccccc;margin-bottom: 4px;">年月:</div>
+            <div>{{data.startTime}}</div>
+          </div>
+          <div style="margin-bottom: 10px;width: 50%;">
+            <div style="color: #cccccc;margin-bottom: 4px;">带教老师:</div>
+            <div>{{data.peopleValue}}</div>
+          </div>
+          <div style="margin-bottom: 10px;width: 50%;">
+            <div style="color: #cccccc;margin-bottom: 4px;">创建时间:</div>
+            <div>{{data.startTime}}</div>
+          </div>
+          <div style="margin-bottom: 10px;width: 50%;">
+            <div style="color: #cccccc;margin-bottom: 4px;">学生姓名:</div>
+            <div>{{data.peopleValue}}</div>
+          </div>
+          <div style="margin-bottom: 10px;width: 50%;">
+            <div style="color: #cccccc;margin-bottom: 4px;">备注:</div>
+            <div>{{data.address}}</div>
+          </div>
         </div>
       </div>
-      <div style="position: fixed;right: 26px;bottom: 60px">
-        <router-link to="/activities-add">
+      <div style="position: fixed;right: 26px;bottom: 70px">
+        <router-link to="/workload-add">
           <van-icon color="#17d4b5" name="add" size="40"/>
         </router-link>
       </div>
+    </div>
+    <div style="position: fixed;left: 0;bottom: 0;width: 100vw;"
+      v-if="isEdit"
+    >
+      <van-button style="width: 50%" type="default">删除</van-button>
+      <van-button style="width: 50%" color="#17d4b5">提交</van-button>
     </div>
   </div>
 </template>
@@ -57,6 +80,7 @@
                 value: '',
                 value1: 'Rounds-One',
                 value2: 'a',
+                isEdit: false,
                 option1: [
                     // 理论授课，小讲课，技能培训，教学查房，病案讨论，专题培训，读书报告，主任查房
                     { text: '教学查房', value: 'Rounds-One' },
@@ -83,6 +107,7 @@
                         peopleValue: '凌老师',
                         address: '教学楼7楼403室',
                         status: 1,
+                        date: '2020-10-20'
                     },
                     {
                         title: '2020楚科活动1001',
@@ -93,6 +118,7 @@
                         peopleValue: '刘老师',
                         address: '教学楼7楼403室',
                         status: 2,
+                        date: '2020-10-22'
                     }
                 ]
             }
@@ -114,9 +140,9 @@
         methods:{
             goDetail(data){
                 localStorage.setItem('currentData',JSON.stringify(data))
-                this.$router.push({
-                    path: '/activities-add'
-                })
+                // this.$router.push({
+                //     path: '/activities-add'
+                // })
             }
         }
     }

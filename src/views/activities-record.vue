@@ -25,7 +25,7 @@
       >
         <div style="font-size: 14px;display: flex;justify-content: space-between;">
           {{data.title}}
-          <van-tag :type="['primary', 'success', 'warning'][data.status]" size="medium">{{option2[data.status].text}}</van-tag>
+          <van-tag :type="['success', 'warning'][data.status]" size="medium">{{option2[data.status].text}}</van-tag>
         </div>
         <van-divider />
         <div style="margin-bottom: 10px">
@@ -41,11 +41,7 @@
           <div>{{data.address}}</div>
         </div>
       </div>
-      <div style="position: fixed;right: 26px;bottom: 60px">
-        <router-link to="/activities-add">
-          <van-icon color="#17d4b5" name="add" size="40"/>
-        </router-link>
-      </div>
+
     </div>
   </div>
 </template>
@@ -69,9 +65,8 @@
                     { text: '主任查房', value: 'director_round' },
                 ],
                 option2: [
-                    { text: '未发布', value: 'c' },
-                    { text: '开展中', value: 'a' },
-                    { text: '已完成', value: 'b' },
+                    { text: '已提交', value: 'a' },
+                    { text: '未提交', value: 'b' },
                 ],
                 testData: [
                     {
@@ -82,7 +77,7 @@
                         score: 89,
                         peopleValue: '凌老师',
                         address: '教学楼7楼403室',
-                        status: 1,
+                        status: 0,
                     },
                     {
                         title: '2020楚科活动1001',
@@ -92,7 +87,7 @@
                         score: 60,
                         peopleValue: '刘老师',
                         address: '教学楼7楼403室',
-                        status: 2,
+                        status: 1,
                     }
                 ]
             }
@@ -115,7 +110,7 @@
             goDetail(data){
                 localStorage.setItem('currentData',JSON.stringify(data))
                 this.$router.push({
-                    path: '/activities-add'
+                    path: '/activities-write'
                 })
             }
         }
