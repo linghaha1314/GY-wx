@@ -32,11 +32,11 @@ export default {
       }
   },
   methods:{
-      goScan(){
-          this.$router.push({
-              path: '/scan'
-          })
-      }
+      // goScan(){
+      //     this.$router.push({
+      //         path: '/scan'
+      //     })
+      // }
   }
 };
 </script>

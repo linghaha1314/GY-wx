@@ -24,7 +24,7 @@
       </div>
     </van-form>
     <div style="text-align: right;padding: 20px 20px;">
-      <a href="https://www.baidu.com">
+      <a href="http://testgy.free.idcfengye.com">
         <span>
           注册
         </span>
@@ -59,7 +59,8 @@
         });
         Object.assign(this.loginInfo,values)
           getLogin(this.$qs.stringify(this.loginInfo)).then((res)=>{
-              if(res.data.success){
+              console.log(res, 9999)
+              if(res.data.status===1){
                   let scan = localStorage.getItem('scan') || ''; // 是否是扫描过来的
                       this.$toast.clear()
                       if(scan === '1'){

@@ -73,6 +73,7 @@
         <van-cell :title="ac.title" :value="ac.people" v-for="ac in ac_list" :key="ac.title" @click="checkAc(ac)"/>
       </van-cell-group>
     </van-popup>
+    <AMap @getAddressInfo="getAddressInfo" ref="amapComponent"/>
   </div>
 </template>
 <script>
@@ -218,7 +219,30 @@
             checkAc(data){
                 this.currentData = data;
                 this.show = false;
-            }
+            },
+            //获取地址
+
+            getAddressInfo(addressInfo){
+
+                // console.log(addressInfo)
+
+                let {formattedAddress,province,city,district,township}=addressInfo
+
+                this.addresses=[
+
+                    {
+
+                        name:`${township}（${city}${district}）`,
+
+                        formattedAddress
+
+                    }
+
+                ]
+
+                this.activeIndex=0
+
+            },
         },
         mounted() {
             // 判断是否登录

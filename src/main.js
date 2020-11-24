@@ -2,6 +2,8 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
 // import store from './store/page'
+import './mock/index'
+
 import {
     Button,Icon, Form, Field, Tabbar, TabbarItem, Toast, NavBar, Swipe, SwipeItem, NoticeBar, Grid, GridItem, Card, Search, Tab, Tabs, Image as VanImage, Tag, Cell, CellGroup, Divider, Collapse, CollapseItem, CountDown, RadioGroup, Radio, Popup, Checkbox, CheckboxGroup, DropdownMenu, DropdownItem, Picker, DatetimePicker, Uploader
 } from 'vant';
@@ -10,6 +12,7 @@ import 'lib-flexible/flexible.js'
 // step1：引入 axios
 import Axios from 'axios'
 import qs from 'qs'
+
 
 Vue.config.productionTip = false
 
